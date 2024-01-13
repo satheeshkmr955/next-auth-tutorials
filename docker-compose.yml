@@ -1,0 +1,23 @@
+version: "3.1"
+services:
+  next_auth_db:
+    image: postgres
+    container_name: next_auth_db
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: example
+      POSTGRES_DB: next_auth
+    volumes:
+      - next_auth_data:/var/lib/postgresql/data
+    ports:
+      - "5431:5432"
+
+  next_auth_adminer:
+    image: adminer
+    container_name: next_auth_adminer
+    restart: always
+    ports:
+      - 8081:8080
+
+volumes:
+  next_auth_data:
